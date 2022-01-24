@@ -1,2 +1,1 @@
-Hello how are you?
-I was wondering
+Hello how are you?  I was wondering.   Do
