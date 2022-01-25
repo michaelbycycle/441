@@ -1,2 +1,1 @@
-Hello how are you?\ Do you want to go to the\every.  Yes that sounds<br>good.  Do you want<br>
-to
+441 HW-1 Readme This assignment was difficult for me, as I had not fully synthesized all of the information from last semester's MART341 class yet. As such, I had to remember the box model.  Some of the areas that were an issue for me were implementing a fixed header.  To implement this I had to look into creating a fixed position for the coordinates of the header at position 0.  The main content wrapper had a margin of auto and set to 80% width.  
