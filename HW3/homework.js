@@ -1,6 +1,5 @@
-var person = prompt("Please enter your name", "Harry Potter");
+var info = window.prompt("what is your favorite color?");
+console.log(info);
+console.log("hello")
 
-if (person != null) {
-  document.getElementById("demo").innerHTML =
-  "Hello " + person + "! How are you today?";
-}
+
