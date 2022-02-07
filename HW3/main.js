@@ -4,7 +4,7 @@
 The left button is referenced when the parameter of the storyFunction function is choice == 1 and 
 the right button is referenced when the parameter of the storyFunction function is choice == 2.
 
-We can set different if/else text outputs for the two buttons and story div through the differing 
+We can set different if/else text outputs for the two buttons and story div through differing 
 the values of the answer1 and answer2 variables.
 
 */
