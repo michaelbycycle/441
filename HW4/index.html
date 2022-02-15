@@ -7,9 +7,14 @@
 </head>
 
 <body>
+   
     <img src="beerBooks.jpg">
     <br>
     <h1>The Thirsty Scholar</h1>
+    <script>
+        x = returnSubTitle()
+        document.write(x)
+    </script>
     <div id="story">
         I just got out of class!  What should I do now?
     </div>
@@ -17,6 +22,13 @@
 
     <button id="choice1" onclick="storyFunction(1);">Go Study</button>&nbsp;
     <button id="choice2" onclick="storyFunction(2);">Go to the bar</button>
+    <div id = "chooseNumOfAssignmentsDiv">
+        <h2>How many assignments do you want to do?</h2>
+        <form id="form" onsubmit="return false;"><br>
+            Enter 0 - 3: <input type="text" id="assignmentNum"/>
+            <input type="submit" value="Choose" onclick="chooseNumberOfAssignments()"/><br>
+        </form>
+    </div>
 </body>
 
 </html>
