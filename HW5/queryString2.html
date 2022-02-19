@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>
+            Query String
+        </title>
+        <style> 
+            #message {
+                color:blue;
+            }
+        </style>
+        <script>
+            function getInformation()
+            {
+                var information = new URLSearchParams(location.search);
+                document.getElementById("message").innerHTML = information.get("info"); 
+            }
+        </script>
+    </head>
+    <body onload="getInformation();">
+        <div id="message"></div>
+    </body>
+</html>
