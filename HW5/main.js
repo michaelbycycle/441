@@ -40,6 +40,8 @@ function createRandomImageArray()
     }
 }
 
+
+
 function flipImage(number)
 {
     document.getElementById(imageTags[number]).src= actualImages[number];
@@ -48,4 +50,3 @@ function flipImage(number)
         
     
 }
-
