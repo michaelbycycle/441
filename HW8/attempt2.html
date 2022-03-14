@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            var allViews = new Array();
+            class singleView{
+                constructor(imageSelector, imagePath, titleSelector, title)
+                {
+                    this.imageSelector = imageSelector;
+                    this.imagePath = imagePath;
+                    this.titleSelector = titleSelector;
+                    this.title = title;
+                    //this.shape = shape;
+                }
+
+                get theImageSelector(){
+                    return this.imageSelector;
+                }
+
+                get theImagePath(){
+                    return this.imagePath;
+                }
+
+                get theTitleSelector(){
+                    return this.titleSelector;
+                }
+
+                get theTitle(){
+                    return this.title;
+                }
+
+                /*get theShape(){
+                    return this.shape;
+                }
+                */
+                
+                
+            }
+
+            function initializeArray()
+            {
+                var view1 = new singleView(".view1", "images/spring_final.jpg", "#title1","Spring")
+                allViews.push(view1);
+            }
+
+            $(document).ready(function(){
+            initializeArray();
+            $(allViews[0].theImagegSelector).attr("src", allViews[0].theImagePath);
+            //$(allViews[0].titleSelector).attr("src", allViews[0].theTitle);
+
+
+
+
+            });
+        </script>
+
+    </head>
+    <body>
+        <img src="" class="view1">
+        <h1 class="title1">Hello</h1>
+
+
+
+    </body>
+</html>
