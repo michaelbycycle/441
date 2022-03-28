@@ -1,0 +1,28 @@
+<html>
+<head>
+<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+<style></style>
+
+<script>
+     $(document).ready(function() {
+        $("#fetch").click(function(event) {
+            $.getJSON('employee.json', function(emp) {
+                $('#display').html('<p> Name: ' + emp.name + '</p>');
+                $('#display').append('<p>Age : ' + emp.age + '</p>');
+                $('#display').append('<p> Company: '
+                + emp.company 
+                + '</p>');
+            });
+        });
+    });
+</script>
+
+</head>
+
+<body>
+    <div id="display" style="background-color:#39B54A;"></div>
+    <input type="button" id="fetch" value="Fetch Employee Data" /> </body>
+</body>
+
+</html>

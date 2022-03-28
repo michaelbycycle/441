@@ -1,0 +1,85 @@
+<html>
+<head>
+<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+<style>
+footer{
+    background-color: darkgoldenrod;
+
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: white;
+   text-align: center;
+   height: 50px;
+}
+
+    .flex-container {
+  display: flex;
+  justify-content: center;
+  background-color: DodgerBlue;
+  flex-flow: row rap;
+  width: 50%;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 200px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+  flex-basis: 100%;
+}
+
+</style>
+
+<script>
+     $(document).ready(function() {
+        $("#fetch").click(function(event) {
+            $.getJSON('pokemon.json', function(catalog) {
+                $('li').html('<p> Name: ' + catalog.pokemon[0].name + '</p>');
+                $('li').append('<p>ID : ' + catalog.pokemon[0].num + '</p>');
+                $('li').append('<p>Age : ' + catalog.pokemon[0].id + '</p>');
+                $('li').append('<p>Type : ' + catalog.pokemon[0].type[0] + '</p>');
+                
+            });
+        });
+
+        $.fn.yellowey = function () {
+            this.css("background-color", "yellow");
+        };
+
+        $(function () {
+            $("#fetch").click(function () {
+                $("#change").yellowey();
+            });
+
+        });
+    });
+    
+
+</script>
+
+</head>
+
+<body style="background-color:cornsilk;">
+    <img src="pokeapi.png">
+    <h1>Pokemon Catalog</h1>
+    <input type="button" id="fetch" value="See Profile For Bublasaur" /><br>
+    <br>
+    <img src="bulb.png" height="300">
+    <div class="flex-container">
+        <div id="change"><li></div>
+    </div>
+      
+   <footer>Gotta Catch Em All</footer>
+</body>
+
+</html>
+
+
+<!--
+ <div id="item1" style="background-color:#39B54A;"></div>
+
+-->
