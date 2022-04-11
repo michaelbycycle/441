@@ -63,20 +63,28 @@ function getKey(event)
         moveRight();
         direction = "right";
     }
-    var test = hasCollided(square1,square2);
-    var test2 = false;
-    for(var i = 0; i < squareArray.length; i++)
+    for(var i = 0; i < obstcleArray.length; i++)
+    {
+        var obstacleTest = hasCollided(square1,obstacleArray[i]);
+    }
+
+    
+    //var coinTest = false; PROBABLY NOT NEEDED
+    for(var i = 0; i < coinArray.length; i++)
     {
 
-        test2 = hasCollided(square1,squareArray[i]);
-        if(test2 == true)
+        coinTest = hasCollided(square1,coinArray[i]);
+        if(coinTest == true)
         {
+            //code for removing coin
+            coinArray = coinArray.splice(i,1)
             break;
         }
         
         //console.log(test2);
     }
-    if(test || test2)
+    //take out test2 since this is now a coin
+    if(obstacleTest)
     {
         lives--;
         if(direction == "left")
@@ -147,11 +155,3 @@ function hasCollided(object1, object2) {
 }
 
 
-/*
-
-if()
-
-
-
-
-*/
