@@ -121,4 +121,4 @@ function hasTouchedBorder(object1) {
     }
     
     
-}
+} 
