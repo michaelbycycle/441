@@ -1,0 +1,200 @@
+<html>
+    <head>
+        <title>Canvas</title>
+    </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="coin.js"></script>
+    <script src="obstacle.js"></script>
+    <style>
+        #myCanvas{
+            background-color: rgb(141, 140, 138);
+            border:saddlebrown;
+            border-style: solid;
+            border-width: 2px;
+            
+        }
+    </style>
+    <body>
+        <canvas id="myCanvas" height="600" width="800"></canvas>
+
+
+<script>
+var canvas;
+var ctx;
+var x = 50;
+var y = 50;
+var coin1;
+var direction;
+var questions;
+var coinArray = [];
+var obstacleArray = [];
+var lives = 3;
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d"); 
+ctx.fillStyle = "#0000FF";
+ctx.fillRect(50, 50, 10, 10);
+
+$(document).ready(function(){
+    
+    setup();
+    
+});
+
+function setup()
+{
+    $.getJSON("data/coins.json", function(data) {
+        
+        for(var i = 0; i < data.coins.length; i++)
+        {
+            
+            coinArray.push(new Coin(data.coins[i].x,data.coins[i].y, data.coins[i].h, data.coins[i].w, data.coins[i].color));
+        }
+        console.log(coinArray.length)
+        drawCoins();
+    });
+
+    
+    //[--Code for doing JSON for obstacles--]
+    $.getJSON("data/obstacles.json", function(data) {
+        
+        for(var i = 0; i < data.obstacles.length; i++)
+        {
+            
+            obstacleArray.push(new Obstacle(data.obstacles[i].x,data.obstacles[i].y, data.obstacles[i].h, data.obstacles[i].w, data.obstacles[i].color));
+        }
+        console.log(obstacleArray.length)
+        drawObstacles();
+    });
+    
+
+    
+}
+
+function getKey(event)
+{
+    var char = event.which || event.keyCode;
+    var actualLetter = String.fromCharCode(char);
+    if(actualLetter == "w")
+    {
+        moveUp();
+        direction = "up";
+    }
+    if(actualLetter == "s")
+    {
+        moveDown();
+        direction = "down";
+    }
+    if(actualLetter == "a")
+    {
+        moveLeft();
+        direction = "left";
+    }
+    if(actualLetter == "d")
+    {
+        moveRight();
+        direction = "right";
+    }
+    for(var i = 0; i < obstcleArray.length; i++)
+    {
+        var obstacleTest = hasCollided(square1,obstacleArray[i]);
+        if(obstacleTest)
+        {
+            lives--;
+            if(direction == "left")
+            {
+                moveRight();
+            }
+            else if(direction == "right")
+            {
+                moveLeft();
+            }
+            else if(direction == "up")
+            {
+                moveDown();
+            }
+            else if(direction == "down")
+            {
+                moveUp();
+            }
+        
+        }
+    }
+
+    
+    //var coinTest = false; PROBABLY NOT NEEDED
+
+    for(var i = 0; i < coinArray.length; i++)
+    {
+
+        coinTest = hasCollided(square1,coinArray[i]);
+        if(coinTest == true)
+        {
+            //code for removing coin
+            coinArray = coinArray.splice(i,1)
+            break;
+        }
+        
+    }
+    
+    drawSquare(); 
+    
+}
+
+function moveUp()
+{
+    square1.y-=10;
+}
+function moveDown()
+{
+    square1.y+=10;
+}
+function moveRight()
+{
+    square1.x+=10;
+}
+function moveLeft()
+{
+    square1.x-=10;
+}
+
+
+
+function drawCoins()
+{
+    //ctx.clearRect(0,0,800,600);
+    for(var i = 0; i < coinArray.length; i++)
+    {
+        ctx.fillStyle = coinArray[i].mainColor;
+        ctx.fillRect(coinArray[i].x, coinArray[i].y, coinArray[i].width, coinArray[i].height);
+    }
+}
+
+function drawObstacles()
+{
+    //ctx.clearRect(0,0,800,600);
+    for(var i = 0; i < obstacleArray.length; i++)
+    {
+        ctx.fillStyle = obstacleArray[i].mainColor;
+        ctx.fillRect(obstacleArray[i].x, obstacleArray[i].y, obstacleArray[i].width, obstacleArray[i].height);
+    }
+}
+
+
+function hasCollided(object1, object2) {
+    return !(
+        ((object1.y + object1.height) < (object2.y)) ||
+        (object1.y > (object2.y + object2.height)) ||
+        ((object1.x + object1.width) < object2.x) ||
+        (object1.x > (object2.x + object2.width))
+    );
+}
+
+</script>
+
+      
+    </body>
+</html>
+
+
+
